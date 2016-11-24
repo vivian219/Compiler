@@ -10,7 +10,10 @@ enum wordType {
 };
 enum wordKind {
 	constKind,
+	TempConKind,
 	varKind,
+	TempVarKind,
+	TempAddrKind,
 	functionKind,
 	arrKind,
 	paraKind
@@ -41,6 +44,7 @@ public:
 	int value;
 	char constvalue;
 	int size;
+	int tempCount = 0;
 //	globalSignary*  global;
 	//Signary(globalSignary *_global);
 	//bool ifDef(string name);
@@ -52,6 +56,8 @@ public:
 	vector<SignaryItem*> *sigList = new vector<SignaryItem*>();
 	map<string, SignaryItem*> sigTable;
 	void printSig();
+	bool funCall(vector<SignaryItem*> _paraList);
+	SignaryItem* genTemp(wordType wt,wordKind wk);
 };
 class globalSignary {
 public:

@@ -149,6 +149,8 @@
     <ClInclude Include="globalSignary.h" />
     <ClInclude Include="grammer.h" />
     <ClInclude Include="lexer.h" />
+    <ClInclude Include="MiddleCode.h" />
+    <ClInclude Include="middleinstr.h" />
     <ClInclude Include="word.h" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +158,8 @@
     <ClCompile Include="grammer.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MiddleCode.cpp" />
+    <ClCompile Include="middleinstr.cpp" />
     <ClCompile Include="signary.cpp" />
     <ClCompile Include="word.cpp" />
   </ItemGroup>

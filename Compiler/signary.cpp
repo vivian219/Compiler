@@ -1,10 +1,8 @@
 #include"globalSignary.h"
 #include<iostream>
+#include<sstream>
 using namespace std;
-//Signary::Signary(globalSignary *_global)
-//{
-//	global = _global;
-//}
+
 bool Signary::enterSignary(string name, wordKind wk, wordType wt, int size,int intValue,char charValue)
 {
 	map<string, SignaryItem*>::iterator sigTmp = sigTable.find(name);
@@ -26,7 +24,10 @@ SignaryItem* Signary::querySignary(string _name)
 		return sigTable[_name];
 	}
 	else
+	{
+		cout << sigTable.size() << "func"<<endl;
 		return NULL;
+	}
 }
 void Signary::printSig()
 {
@@ -62,6 +63,10 @@ void Signary::printSig()
 }
 bool Signary::enterParaList(wordType wt, string name)
 {
+	if (paraList == NULL)
+	{
+		paraList = new vector<wordType>;
+	}
 	map<string, SignaryItem*>::iterator tmp = sigTable.find(name);
 	if (tmp == sigTable.end())
 	{
@@ -74,4 +79,39 @@ bool Signary::enterParaList(wordType wt, string name)
 		cout << "parameter failed to enter the parameter list" << endl;
 		return false;
 	}
+}
+bool Signary::funCall(vector<SignaryItem*> _paraList)
+{
+	if (_paraList.size() != paraList->size())
+	{
+		cout << paraList->size() << endl;
+		cout << _paraList.size() << endl;
+		cout << name << " lacks parameter when call" << endl;
+		return false;
+	}
+	else
+	{
+		vector<wordType>::iterator tmp1;
+		vector<SignaryItem*>::iterator tmp2;
+		for (tmp1=paraList->begin(),tmp2=_paraList.begin();tmp1!=paraList->end();tmp1++,tmp2++)
+		{
+			if (*tmp1 != (*tmp2)->wt)
+			{
+				cout << name << " parameter type isn't correct" << endl;
+				return false;
+			}
+		}
+		return true;
+	}
+}
+SignaryItem* Signary::genTemp(wordType wt, wordKind wk)
+{
+	stringstream ss;
+	ss << "Temp" << tempCount;
+	string name = ss.str();
+	SignaryItem* tmp = new SignaryItem(name,4,wk,wt,0,NULL);
+	sigList->push_back(tmp);
+	sigTable[name] = tmp;
+	tempCount++;
+	return tmp;
 }

@@ -35,12 +35,12 @@ public:
 	void writeState();//写语句
 	void retState();//返回语句
 	void assignState();//赋值语句
-	void funcCallState();//函数调用
+	SignaryItem* funcCallState();//函数调用
 	void condition();//条件语句
-	void expresstion();//表达式
-	void valueParaList();//值参数表
-	void itemDef();//项
-	void factorDef();//因子
+	SignaryItem* expresstion();//表达式
+	vector<SignaryItem*> valueParaList();//值参数表
+	SignaryItem* itemDef();//项
+	SignaryItem* factorDef();//因子
 	void printSignary();
 	bool funcEnterGlob(string name, wordType wt);
 	bool queryIdent(string name);

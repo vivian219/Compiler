@@ -27,6 +27,12 @@
     <ClInclude Include="globalSignary.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="middleinstr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MiddleCode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lexer.cpp">
@@ -45,6 +51,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="globalSignary.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="middleinstr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MiddleCode.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -117,6 +117,7 @@ void Grammer::prog()
 	else
 	{
 		error();
+		cout << "120" << endl;
 	}
 	printSignary();
 }
@@ -198,12 +199,12 @@ void Grammer::constDef(bool ifglob)
 			name = token.name;
 			if (token.word_sym != symbol::ident)
 			{
-				error();
+				error(); cout << "202" << endl;
 			}
 			next();
 			if (token.word_sym != symbol::becomes)
 			{
-				error();
+				error(); cout << "207" << endl;
 			}
 			next();
 			char ch = token.name.at(0);
@@ -218,7 +219,7 @@ void Grammer::constDef(bool ifglob)
 			}
 			if (token.word_sym != symbol::charConst)
 			{
-				error();
+				error(); cout << "222" << endl;
 			}
 			next();
 			if (token.word_sym != symbol::comma)
@@ -226,7 +227,9 @@ void Grammer::constDef(bool ifglob)
 		}
 	}
 	else
-		error();
+	{
+		error(); cout << "230" << endl;
+	}
 }
 void Grammer::varState(bool ifglob, string _name, wordType _wt)
 {
@@ -374,7 +377,9 @@ void Grammer::retFuncDef()
 	while (true)
 	{
 		if (token.word_sym != symbol::lparen)
-			error();
+		{
+			error(); cout << "380" << endl;
+		}
 		next();
 		if (token.word_sym == symbol::rparen)
 		{
@@ -384,15 +389,21 @@ void Grammer::retFuncDef()
 		{
 			paraList();
 			if (token.word_sym != symbol::rparen)
-				error();
+			{
+				error(); cout << "392" << endl;
+			}
 			next();
 		}
 		if (token.word_sym != symbol::lbrac)
-			error();
+		{
+			error(); cout << "398" << endl;
+		}
 		next();
 		compState();
 		if (token.word_sym != symbol::rbrac)
-			error();
+		{
+			error(); cout << "404" << endl;
+		}
 		//cout << "this is a function with return statment" << endl;
 		next();
 		if (token.word_sym != symbol::intsym&&token.word_sym != symbol::charsym)
@@ -449,7 +460,9 @@ void Grammer::paraList()
 void Grammer::voidFuncDef()
 {
 	if (token.word_sym != symbol::lparen)
-		error();
+	{
+		error(); cout << "463" << endl;
+	}
 	next();
 	if (token.word_sym == symbol::rparen)
 	{
@@ -459,34 +472,46 @@ void Grammer::voidFuncDef()
 	{
 		paraList();
 		if (token.word_sym != symbol::rparen)
-			error();
+		{
+			error(); cout << "475" << endl;
+		}
 		next();
 	}
 	if (token.word_sym != symbol::lbrac)
 	{
-		error();
+		error(); cout << "482" << endl;
 	}
 	next();
 	compState();
 	if (token.word_sym != symbol::rbrac)
-		error();
+	{
+		error(); cout << "488" << endl;
+	}
 	next();
 	//cout << "this is a function without return statement" << endl;
 }
 void Grammer::mainFunc()
 {
 	if (token.word_sym != symbol::lparen)
-		error();
+	{
+		error(); cout << "496" << endl;
+	}
 	next();
 	if (token.word_sym != symbol::rparen)
-		error();
+	{
+		error(); cout << "501" << endl;
+	}
 	next();
 	if (token.word_sym != symbol::lbrac)
-		error();
+	{
+		error(); cout << "507" << endl;
+	}
 	next();
 	compState();
 	if (token.word_sym != symbol::rbrac)
-		error();
+	{
+		error(); cout << "512" << endl;
+	}
 	next();
 //	cout << "this is main function" << endl;
 }
@@ -568,7 +593,9 @@ void Grammer::statement()
 		next();
 		readState();
 		if (token.word_sym != symbol::semicolon)
-			error();
+		{
+			error(); cout << "597" << endl;
+		}
 		next();
 	}
 	else if (token.word_sym == symbol::printfsym)
@@ -576,7 +603,9 @@ void Grammer::statement()
 		next();
 		writeState();
 		if (token.word_sym != symbol::semicolon)
-			error();
+		{
+			error(); cout << "607" << endl;
+		}
 		next();
 	}
 	else if (token.word_sym == symbol::returnsym)
@@ -595,11 +624,17 @@ void Grammer::statement()
 		next();
 		expresstion();
 		if (token.word_sym != symbol::rparen)
-			error();
+		{
+			error(); cout << "627" << endl;
+		}
 		next();
+		cout << token.name << endl;
 		if (token.word_sym != symbol::semicolon)
-			error();
-		next();
+		{
+			error(); cout << "632" << endl;
+		}
+
+		//next();
 	}
 	else if (token.word_sym == symbol::semicolon)
 	{
@@ -619,28 +654,43 @@ void Grammer::statement()
 		}
 		else if (token.word_sym == symbol::lparen)
 		{
+			if (!queryFunc(name))
+			{
+				cout << "can not find the function in the function list" << endl;
+			}
 			next();
-			funcCallState();
+			/*vector<wordType>* para = funcCallState();
+			Signary* tmp = globSig->funcList[name];
+			cout << name << para->size() << endl;
+			tmp->funCall(para);*/
 	//		cout << "this is a function call statement" << endl;
 		}
 		else
-			error();
+		{
+			error(); cout << "669" << endl;
+		}
 		if (token.word_sym == symbol::semicolon)
 		{
 			next();
 		}
 		else
-			error();
+		{
+			error(); cout << "677" << endl;
+		}
 	}
 }
 void Grammer::condiState()
 {
 	if (token.word_sym != symbol::lparen)
-		error();
+	{
+		error(); cout << "684" << endl;
+	}
 	next();
 	condition();
 	if (token.word_sym != symbol::rparen)
-		error();
+	{
+		error(); cout << "691" << endl;
+	}
 	next();
 	statement();
 	if (token.word_sym == symbol::elsesym)
@@ -671,15 +721,19 @@ void Grammer::doLoop()
 	statement();
 	if (token.word_sym != symbol::whilesym)
 	{
-		error();
+		error(); cout << "723" << endl;
 	}
 	next();
 	if (token.word_sym != symbol::lparen)
-		error();
+	{
+		error(); cout << "727" << endl;
+	}
 	next();
 	condition();
 	if (token.word_sym != symbol::rparen)
-		error();
+	{
+		error(); cout << "733" << endl;
+	}
 	next();
 }
 void Grammer::forLoop()
@@ -714,33 +768,49 @@ void Grammer::forLoop()
 	next();
 	expresstion();
 	if (token.word_sym != symbol::semicolon)
-		error();
+	{
+		error(); cout << "770" << endl;
+	}
 	next();
 	condition();
 	if (token.word_sym != symbol::semicolon)
-		error();
+	{
+		error(); cout << "776" << endl;
+	}
 	next();
 	if (!queryIdent(token.name))
 		cout << "the ident in the for loop did not defined" << endl;
 	if (token.word_sym != symbol::ident)
-		error();
+	{
+		error(); cout << "783" << endl;
+	}
 	next();
 	if (token.word_sym != symbol::becomes)
-		error();
+	{
+		error(); cout << "788" << endl;
+	}
 	next();
 	if (!queryIdent(token.name))
 		cout << "the ident in the for loop did not defined" << endl;
 	if (token.word_sym != symbol::ident)
-		error();
+	{
+		error(); cout << "795" << endl;
+	}
 	next();
 	if (token.word_sym != symbol::plus&&token.word_sym != symbol::minus)
-		error();
+	{
+		error(); cout << "801" << endl;
+	}
 	next();
 	if (token.word_sym != symbol::number || token.name == "0")
-		error();
+	{
+		error(); cout << "805" << endl;
+	}
 	next();
 	if (token.word_sym != symbol::rparen)
-		error();
+	{
+		error(); cout << "810" << endl;
+	}
 	next();
 	statement();
 	if (token.word_sym != symbol::rbrac)
@@ -762,7 +832,9 @@ void Grammer::assignState()
 		next();
 		expresstion();
 		if (token.word_sym != symbol::rsquare)
-			error();
+		{
+			error(); cout << "834" << endl;
+		}
 		next();
 		if (token.word_sym == symbol::becomes)
 		{
@@ -771,13 +843,17 @@ void Grammer::assignState()
 		}
 	}
 }
-void Grammer::funcCallState()
+SignaryItem* Grammer::funcCallState()
 {
+	vector<SignaryItem*> para;
 	if (token.word_sym == symbol::ident)
 	{
-		if (!queryFunc(token.name))
-			cout << "the function did not defined" << endl;
-		valueParaList();
+		/*if (!queryFunc(token.name))
+			cout << "the function did not defined" << endl;*/
+		para=valueParaList();
+		Signary* tmp = globSig->funcList[token.name];
+		//cout << name << para->size() << endl;
+		tmp->funCall(para);
 		if (token.word_sym != symbol::rparen)
 		{
 			error();
@@ -786,28 +862,42 @@ void Grammer::funcCallState()
 		next();
 	}
 	else if (token.word_sym == symbol::rparen)
+	{
 		next();
+		return NULL;
+	}
 	else
-		error();
+	{
+		error(); cout << "868" << endl;
+		return NULL;
+	}
 }
-void Grammer::valueParaList()
+vector<SignaryItem*> Grammer::valueParaList()
 {
-	expresstion();
+	vector<SignaryItem*> para = vector<SignaryItem*>();
+	SignaryItem* tmp=expresstion();
+	para.push_back(tmp);
 	while (token.word_sym == symbol::comma)
 	{
 		next();
-		expresstion();
+		tmp=expresstion();
+		para.push_back(tmp);
 	}
+	return para;
 }
 void Grammer::readState()
 {
 	if (token.word_sym != symbol::lparen)
-		error();
+	{
+		error(); cout << "902" << endl;
+	}
 	next();
 	if (!queryIdent(token.name))
 		cout << "the ident in the read statement did not defined" << endl;
 	if (token.word_sym != symbol::ident)
-		error();
+	{
+		error(); cout << "909" << endl;
+	}
 	next();
 	while (token.word_sym == symbol::comma)
 	{
@@ -815,7 +905,9 @@ void Grammer::readState()
 		if (!queryIdent(token.name))
 			cout << "the ident in the read statement did not defined" << endl;
 		if (token.word_sym != symbol::ident)
-			error();
+		{
+			error(); cout << "919" << endl;
+		}
 		next();
 	}
 	if (token.word_sym != symbol::rparen)
@@ -829,7 +921,9 @@ void Grammer::readState()
 void Grammer::writeState()
 {
 	if (token.word_sym != symbol::lparen)
-		error();
+	{
+		error(); cout << "935" << endl;
+	}
 	next();
 	if (token.word_sym == symbol::strConst)
 	{
@@ -840,14 +934,18 @@ void Grammer::writeState()
 			expresstion();
 		}
 		if (token.word_sym != symbol::rparen)
-			error();
+		{
+			error(); cout << "948" << endl;
+		}
 		next();
 	}
 	else
 	{
 		expresstion();
 		if (token.word_sym != symbol::rparen)
-			error();
+		{
+			error(); cout << "957" << endl;
+		}
 		next();
 	}
 //	cout << "this is a write statement" << endl;
@@ -855,77 +953,136 @@ void Grammer::writeState()
 void Grammer::retState()
 {
 	if (token.word_sym != symbol::lparen)
-		error();
+	{
+		error(); cout << "967" << endl;
+	}
 	next();
 	expresstion();
 	if (token.word_sym != symbol::rparen)
-		error();
+	{
+		error(); cout << "973" << endl;
+	}
 	next();
 }
-void Grammer::expresstion()
+wordType Grammer::expresstion()
 {
+	wordType wt;
 	if (token.word_sym == symbol::plus || token.word_sym == symbol::minus)
 	{
 		next();
 	}
-	itemDef();
+	wt=itemDef();
 	while (token.word_sym == symbol::plus || token.word_sym == symbol::minus)
 	{
 		next();
 		itemDef();
 	}
+	return wt;
 }
-void Grammer::itemDef()
+wordType Grammer::itemDef()
 {
-	factorDef();
+	wordType wt;
+	wt=factorDef();
 	while (token.word_sym == symbol::times || token.word_sym == symbol::divison)
 	{
 		next();
 		factorDef();
 	}
+	return wt;
 }
-void Grammer::factorDef()
+wordType Grammer::factorDef()
 {
+	wordType wt; string name=token.name;
 	if (token.word_sym == symbol::ident)
 	{
+		SignaryItem* tmp=curSignary->querySignary(name);
+		if (tmp == NULL)
+		{
+			tmp = globSig->queryGlobSignary(name);
+			if (tmp == NULL)
+				cout << "the ident isn't defined" << name << endl;
+			else
+				wt = tmp->wt;
+			//next();
+			/*if (token.word_sym != symbol::lparen)
+			{
+				error(); cout << "1021" << endl;
+			}
+			next();*/
+			//cout << "cannot find the function" <<name<< endl;
+		}
+		else
+			wt = tmp->wt;
+		string name = token.name;
 		if (!queryIdent(token.name))
 			cout << "the ident did not defined" << endl;
 		next();
 		if (token.word_sym == symbol::lparen)
 		{
+			if (queryFunc(name))
+			{
+				if (globSig->sigGlobTable[name]->wt == wordType::voidTyp)
+				{
+					cout << "function without return value cannot be a factor" << endl;
+				}
+			}
+			else
+			{
+				cout << "the function did not defined" << name << endl;
+			}
 			next();
-			funcCallState();
+			//vector<wordType>* para=funcCallState();
+			//Signary* tmp = globSig->funcList[name];
+			////cout << name << para->size() << endl;
+			//tmp->funCall(para);
+			next();
 		}
 		else if (token.word_sym == symbol::lsquare)
 		{
 			next();
 			expresstion();
 			if (token.word_sym != symbol::rsquare)
-				error();
+			{
+				error(); cout << "1049" << endl;
+			}
 			next();
 		}
 	}
 	else if (token.word_sym == symbol::charConst||token.word_sym==symbol::number)
 	{
+		if (token.word_sym == symbol::charConst)
+			wt = wordType::charTyp;
+		else
+			wt = wordType::intTyp;
 		next();
 	}
 	else if (token.word_sym == symbol::lparen)
 	{
+		SignaryItem* tmp=globSig->queryGlobSignary(name);
+		wt = tmp->wt;
 		next();
 		expresstion();
 		if (token.word_sym != symbol::rparen)
-			error();
+		{
+			error(); cout << "1070" << endl;
+		}
 		next();
 	}
 	else if (token.word_sym == symbol::plus || token.word_sym == symbol::minus)
 	{
+		wt = wordType::intTyp;
 		next();
 		if (token.word_sym != symbol::number)
-			error();
+		{
+			error(); cout << "1080" << endl;
+		}
 		next();
 	}
 	else
-		error();
+	{
+		error(); cout << "1086" << endl;
+	}
+	return wt;
 }
 void Grammer::printSignary()
 {
@@ -935,7 +1092,7 @@ void Grammer::printSignary()
 bool Grammer::funcEnterGlob(string name,wordType wt)
 {
 	funcNum++;
-	cout << "function"<<funcNum<< " name=" << name << endl;
+	//cout << "function"<<funcNum<< " name=" << name << endl;
 	map<string,Signary*>::iterator sigTmp = globSig->funcList.find(name);
 	if (sigTmp == globSig->funcList.end())
 	{
@@ -962,6 +1119,19 @@ bool Grammer::queryFunc(string name)
 {
 	map<string, Signary*>::iterator tmp= globSig->funcList.find(name);
 	if (tmp == globSig->funcList.end())
+	{
+		map<string, Signary*>::iterator it;
+		//string name = it->first;
+		cout << name << "can not find int the function list" << endl;
+		for (it = globSig->funcList.begin(); it != globSig->funcList.end(); it++)
+		{
+			Signary* sig = it->second;
+			cout << it->first << endl;
+			cout << sig->name << endl;
+			//sig->printSig();
+			cout << endl;
+		}
 		return false;
+	}
 	return true;
 }
