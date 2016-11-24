@@ -1,7 +1,8 @@
 #include"MiddleCode.h"
 #include<iostream>
-bool MiddleCode::insertMI(MiddleInstr* _mi)
+bool MiddleCode::insertMI(MIType _type, SignaryItem* _desAddr, SignaryItem* srcAddr1, SignaryItem* srcAddr2)
 {
+	MiddleInstr* _mi = new MiddleInstr(_type, _desAddr, srcAddr1, srcAddr2);
 	if (_mi != NULL)
 	{
 		MIList.push_back(_mi);

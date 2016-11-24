@@ -1,4 +1,4 @@
-#include"grammer.h"
+ï»¿#include"grammer.h"
 #include"globalSignary.h"
 #include"word.h"
 #include<iostream>
@@ -34,7 +34,7 @@ void Grammer::prog()
 		if (token.word_sym != ident)
 		{
 			error();
-			cout << "ÀàÐÍ±êÊ¶·ûºóÃæÎÞ±êÊ¶·û" << endl;
+			cout << "ç±»åž‹æ ‡è¯†ç¬¦åŽé¢æ— æ ‡è¯†ç¬¦" << endl;
 		}
 		next();
 		if (token.word_sym != symbol::lparen)
@@ -67,7 +67,7 @@ void Grammer::prog()
 			{
 				error();
 				name = "ident";
-				cout << "ÓÐ·µ»ØÖµº¯Êý¶¨ÒåÈ±ÉÙº¯ÊýÃû" << endl;
+				cout << "æœ‰è¿”å›žå€¼å‡½æ•°å®šä¹‰ç¼ºå°‘å‡½æ•°å" << endl;
 			}
 			/*globSig->enterGlobSignary(name,wordKind::functionKind,wt,4,0,NULL);
 			globSig->funcList[name] = new Signary(name);
@@ -90,7 +90,7 @@ void Grammer::prog()
 			else if (token.word_sym != symbol::ident)
 			{
 				error();
-				cout << "ÎÞ·µ»ØÖµº¯Êý¶¨ÒåÈ±ÉÙº¯ÊýÃû" << endl;
+				cout << "æ— è¿”å›žå€¼å‡½æ•°å®šä¹‰ç¼ºå°‘å‡½æ•°å" << endl;
 			}
 			//Signary*sigTmp = new Signary();
 			/*cout << "funcName:" << name << endl;
@@ -130,7 +130,7 @@ void Grammer::constState(bool ifglob)
 		if (token.word_sym != symbol::semicolon)
 		{
 			error();
-			cout << "¸ñÊ½·Ç·¨£¬³£Á¿ÉùÃ÷½áÊøÃ»ÓÐ¼Ó·ÖºÅ" << endl;
+			cout << "æ ¼å¼éžæ³•ï¼Œå¸¸é‡å£°æ˜Žç»“æŸæ²¡æœ‰åŠ åˆ†å·" << endl;
 		}
 		next();
 	}
@@ -147,14 +147,14 @@ void Grammer::constDef(bool ifglob)
 			if (token.word_sym != symbol::ident)
 			{
 				error();
-				cout << "¸ñÊ½·Ç·¨£¬³£Á¿¶¨ÒåÊ±È±ÉÙ±êÊ¶·û" << endl;
+				cout << "æ ¼å¼éžæ³•ï¼Œå¸¸é‡å®šä¹‰æ—¶ç¼ºå°‘æ ‡è¯†ç¬¦" << endl;
 			}
 			name = token.name;
 			next();
 			if (token.word_sym != symbol::becomes)
 			{
 				error();
-				cout << "³£Á¿¶¨ÒåÊ±È±ÉÙµÈºÅ" << endl;
+				cout << "å¸¸é‡å®šä¹‰æ—¶ç¼ºå°‘ç­‰å·" << endl;
 			}
 			next();
 			symbol op = token.word_sym;
@@ -163,7 +163,7 @@ void Grammer::constDef(bool ifglob)
 			if (token.word_sym != symbol::number)
 			{
 				error();
-				cout << "¶¨ÒåintÐÍ³£Á¿Ê±Êý×Ö¸ñÊ½²»ÕýÈ·" << endl;
+				cout << "å®šä¹‰intåž‹å¸¸é‡æ—¶æ•°å­—æ ¼å¼ä¸æ­£ç¡®" << endl;
 			}
 			intValue = token.value;
 			if (op == symbol::minus)
@@ -261,7 +261,7 @@ void Grammer::varState(bool ifglob, string _name, wordType _wt)
 			if (token.word_sym != symbol::ident)
 			{
 				error();
-				cout << "±äÁ¿¶¨ÒåÖÐ±êÊ¶·ûÀàÐÍºóÎÞ±êÊ¶·û" << endl;
+				cout << "å˜é‡å®šä¹‰ä¸­æ ‡è¯†ç¬¦ç±»åž‹åŽæ— æ ‡è¯†ç¬¦" << endl;
 			}
 			next();
 			if (token.word_sym == symbol::lparen)
@@ -307,14 +307,14 @@ void Grammer::varDef(bool ifglob,string _name,wordType wt)
 			if (token.word_sym != symbol::number)
 			{
 				error();
-				cout << "Êý×éÏÂ±ê²»ÎªÕûÊý" << endl;
+				cout << "æ•°ç»„ä¸‹æ ‡ä¸ä¸ºæ•´æ•°" << endl;
 				size = 10;
 			}
 			next();
 			if (token.word_sym != symbol::rsquare)
 			{
 				error();
-				cout << "Êý×é¶¨ÒåÖÐÈ±ÉÙÓÒÀ¨ºÅ" << endl;
+				cout << "æ•°ç»„å®šä¹‰ä¸­ç¼ºå°‘å³æ‹¬å·" << endl;
 			}
 			if (ifglob)
 			{
@@ -338,7 +338,7 @@ void Grammer::varDef(bool ifglob,string _name,wordType wt)
 			{
 				error();
 				name = "ident";
-				cout << "±äÁ¿¶¨ÒåÖÐ¶ººÅºóÃæÈ±ÉÙ±êÊ¶·û" << endl;
+				cout << "å˜é‡å®šä¹‰ä¸­é€—å·åŽé¢ç¼ºå°‘æ ‡è¯†ç¬¦" << endl;
 			}
 			next();
 			int size = 4;
@@ -418,7 +418,7 @@ void Grammer::retFuncDef()
 		if (token.word_sym != symbol::ident)
 		{
 			error();
-			cout << "ÓÐ·µ»ØÖµº¯Êý¶¨ÒåÈ±ÉÙº¯ÊýÃû" << endl;
+			cout << "æœ‰è¿”å›žå€¼å‡½æ•°å®šä¹‰ç¼ºå°‘å‡½æ•°å" << endl;
 			name = "ident";
 		}
 		//globSig->enterGlobSignary(name, wordKind::functionKind, wt, 4, 0, NULL);
@@ -437,7 +437,7 @@ void Grammer::paraList()
 		if (token.word_sym != symbol::intsym&&token.word_sym != symbol::charsym)
 		{
 			error();
-			cout << "º¯Êý¶¨Òå²ÎÊýÁÐ±íÈ±ÉÙÀàÐÍ±êÊ¶·û" << endl;
+			cout << "å‡½æ•°å®šä¹‰å‚æ•°åˆ—è¡¨ç¼ºå°‘ç±»åž‹æ ‡è¯†ç¬¦" << endl;
 		}
 		if (token.word_sym == symbol::intsym)
 			wt = wordType::intTyp;
@@ -449,7 +449,7 @@ void Grammer::paraList()
 		if (token.word_sym != symbol::ident)
 		{
 			error();
-			cout << "º¯Êý¶¨ÒåµÄ²ÎÊýÁÐ±íÈ±ÉÙ±êÊ¶·û" << endl;
+			cout << "å‡½æ•°å®šä¹‰çš„å‚æ•°åˆ—è¡¨ç¼ºå°‘æ ‡è¯†ç¬¦" << endl;
 		}
 		next();
 		if (token.word_sym != symbol::comma)
@@ -534,7 +534,7 @@ void Grammer::compState()
 			{
 				error();
 				name = "ident";
-				cout << "¸´ºÏÓï¾äµÄ±äÁ¿ÉùÃ÷Ã»ÓÐ±êÊ¶·û" << endl;
+				cout << "å¤åˆè¯­å¥çš„å˜é‡å£°æ˜Žæ²¡æœ‰æ ‡è¯†ç¬¦" << endl;
 			}
 			next();
 			varState(false,name,wt);
@@ -572,7 +572,7 @@ void Grammer::statement()
 		if (token.word_sym != symbol::semicolon)
 		{
 			error();
-			cout << "do-whileÑ­»·ÖÐÈ±ÉÙ·ÖºÅ" << endl;
+			cout << "do-whileå¾ªçŽ¯ä¸­ç¼ºå°‘åˆ†å·" << endl;
 		}
 		next();
 	//	cout << "this is a do_while_loop statement" << endl;
@@ -619,7 +619,7 @@ void Grammer::statement()
 		if (token.word_sym != symbol::lparen)
 		{
 			error();
-			cout << "·µ»ØÓï¾äÖÐÈ±ÉÙ×óÀ¨ºÅ" << endl;
+			cout << "è¿”å›žè¯­å¥ä¸­ç¼ºå°‘å·¦æ‹¬å·" << endl;
 		}
 		next();
 		expresstion();
@@ -659,6 +659,7 @@ void Grammer::statement()
 				cout << "can not find the function in the function list" << endl;
 			}
 			next();
+			funcCallState();
 			/*vector<wordType>* para = funcCallState();
 			Signary* tmp = globSig->funcList[name];
 			cout << name << para->size() << endl;
@@ -742,7 +743,7 @@ void Grammer::forLoop()
 	if (token.word_sym != symbol::lparen)
 	{
 		error();
-		cout << "for loopµÄÌõ¼þÈ±ÉÙ×óÀ¨ºÅ" << endl;
+		cout << "for loopçš„æ¡ä»¶ç¼ºå°‘å·¦æ‹¬å·" << endl;
 	}
 	next();
 	/*if (curSignary->querySignary(name) == NULL)
@@ -757,13 +758,13 @@ void Grammer::forLoop()
 	if (token.word_sym != symbol::ident)
 	{
 		error();
-		cout << "for loopµÄÌõ¼þ³õÊ¼»¯Óï¾äÈ±ÉÙ±êÊ¶·û" << endl;
+		cout << "for loopçš„æ¡ä»¶åˆå§‹åŒ–è¯­å¥ç¼ºå°‘æ ‡è¯†ç¬¦" << endl;
 	}
 	next();
 	if (token.word_sym != symbol::becomes)
 	{
 		error();
-		cout << "for loopµÄÌõ¼þÖÐÈ±ÉÙµÈºÅ" << endl;
+		cout << "for loopçš„æ¡ä»¶ä¸­ç¼ºå°‘ç­‰å·" << endl;
 	}
 	next();
 	expresstion();
@@ -816,7 +817,7 @@ void Grammer::forLoop()
 	if (token.word_sym != symbol::rbrac)
 	{
 		error();
-		cout << "forÑ­»·ÖÐÈ±ÉÙÓÒ´óÀ¨ºÅ" << endl;
+		cout << "forå¾ªçŽ¯ä¸­ç¼ºå°‘å³å¤§æ‹¬å·" << endl;
 	}
 	next();
 }
@@ -857,7 +858,7 @@ SignaryItem* Grammer::funcCallState()
 		if (token.word_sym != symbol::rparen)
 		{
 			error();
-			cout << "º¯Êýµ÷ÓÃÓï¾äÈ±ÉÙÓÒÀ¨ºÅ" << endl;
+			cout << "å‡½æ•°è°ƒç”¨è¯­å¥ç¼ºå°‘å³æ‹¬å·" << endl;
 		}
 		next();
 	}
@@ -913,7 +914,7 @@ void Grammer::readState()
 	if (token.word_sym != symbol::rparen)
 	{
 		error();
-		cout << "¶ÁÓï¾äÖÐÈ±ÉÙÓÒÐ¡À¨ºÅ" << endl;
+		cout << "è¯»è¯­å¥ä¸­ç¼ºå°‘å³å°æ‹¬å·" << endl;
 	}
 	next();
 //	cout << "this is a read statement" << endl;
@@ -964,58 +965,57 @@ void Grammer::retState()
 	}
 	next();
 }
-wordType Grammer::expresstion()
+SignaryItem* Grammer::expresstion()
 {
-	wordType wt;
+	SignaryItem *firstTmp;
 	if (token.word_sym == symbol::plus || token.word_sym == symbol::minus)
 	{
 		next();
 	}
-	wt=itemDef();
+	firstTmp=itemDef();
 	while (token.word_sym == symbol::plus || token.word_sym == symbol::minus)
 	{
+		MIType m = (token.word_sym == symbol::minus) ? MIType::SUB : MIType::ADD;
+		SignaryItem* resultTmp = curSignary->genTemp(wordType::intTyp, wordKind::varKind);
+		SignaryItem* secondTmp;
 		next();
-		itemDef();
+		secondTmp=itemDef();
+		MCode.insertMI(m, resultTmp, firstTmp, secondTmp);
+		firstTmp=resultTmp;
 	}
-	return wt;
+	return firstTmp;
 }
-wordType Grammer::itemDef()
+SignaryItem* Grammer::itemDef()
 {
-	wordType wt;
-	wt=factorDef();
+	SignaryItem* firstTmp;
+	firstTmp=factorDef();
 	while (token.word_sym == symbol::times || token.word_sym == symbol::divison)
 	{
+		MIType t = (token.word_sym == symbol::divison) ? MIType::DIVISION : MULT;
+		SignaryItem* resultTmp=curSignary->genTemp(firstTmp->wt, wordKind::varKind);
 		next();
-		factorDef();
+		SignaryItem* secondTmp=factorDef();
+		MCode.insertMI(t, resultTmp, firstTmp, secondTmp);
+		firstTmp = resultTmp;
 	}
-	return wt;
+	return firstTmp;
 }
-wordType Grammer::factorDef()
+/*
+	ï¼œå› å­ï¼žÂ Â Â  ::= ï¼œæ ‡è¯†ç¬¦ï¼žï½œï¼œæ ‡è¯†ç¬¦ï¼žâ€˜[â€™ï¼œè¡¨è¾¾å¼ï¼žâ€˜]â€™ï½œï¼œæ•´æ•°ï¼ž|ï¼œå­—ç¬¦ï¼žï½œï¼œæœ‰è¿”å›žå€¼å‡½æ•°è°ƒç”¨è¯­å¥ï¼ž|â€˜(â€™ï¼œè¡¨è¾¾å¼ï¼žâ€˜)â€™
+*/
+SignaryItem* Grammer::factorDef()
 {
-	wordType wt; string name=token.name;
+	string name = token.name;
+	SignaryItem* tmp = get(name);
 	if (token.word_sym == symbol::ident)
 	{
-		SignaryItem* tmp=curSignary->querySignary(name);
 		if (tmp == NULL)
 		{
-			tmp = globSig->queryGlobSignary(name);
-			if (tmp == NULL)
 				cout << "the ident isn't defined" << name << endl;
-			else
-				wt = tmp->wt;
-			//next();
-			/*if (token.word_sym != symbol::lparen)
-			{
-				error(); cout << "1021" << endl;
-			}
-			next();*/
-			//cout << "cannot find the function" <<name<< endl;
 		}
-		else
-			wt = tmp->wt;
 		string name = token.name;
-		if (!queryIdent(token.name))
-			cout << "the ident did not defined" << endl;
+		/*if (!queryIdent(token.name))
+			cout << "the ident did not defined" << endl;*/
 		next();
 		if (token.word_sym == symbol::lparen)
 		{
@@ -1050,16 +1050,16 @@ wordType Grammer::factorDef()
 	}
 	else if (token.word_sym == symbol::charConst||token.word_sym==symbol::number)
 	{
-		if (token.word_sym == symbol::charConst)
+		/*if (token.word_sym == symbol::charConst)
 			wt = wordType::charTyp;
 		else
-			wt = wordType::intTyp;
+			wt = wordType::intTyp;*/
 		next();
 	}
 	else if (token.word_sym == symbol::lparen)
 	{
-		SignaryItem* tmp=globSig->queryGlobSignary(name);
-		wt = tmp->wt;
+	//	SignaryItem* tmp=globSig->queryGlobSignary(name);
+	//	wt = tmp->wt;
 		next();
 		expresstion();
 		if (token.word_sym != symbol::rparen)
@@ -1070,7 +1070,6 @@ wordType Grammer::factorDef()
 	}
 	else if (token.word_sym == symbol::plus || token.word_sym == symbol::minus)
 	{
-		wt = wordType::intTyp;
 		next();
 		if (token.word_sym != symbol::number)
 		{
@@ -1082,7 +1081,7 @@ wordType Grammer::factorDef()
 	{
 		error(); cout << "1086" << endl;
 	}
-	return wt;
+	return tmp;
 }
 void Grammer::printSignary()
 {
@@ -1134,4 +1133,17 @@ bool Grammer::queryFunc(string name)
 		return false;
 	}
 	return true;
+}
+SignaryItem* Grammer::get(string name)
+{
+
+	if (curSignary->querySignary(name) == NULL)
+	{
+		if (globSig->queryGlobSignary(name) == NULL)
+			return NULL;
+		else
+			return (globSig->queryGlobSignary(name));
+	}
+	else
+		return (curSignary->querySignary(name));
 }

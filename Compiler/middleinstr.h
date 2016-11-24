@@ -1,7 +1,11 @@
 #pragma once
 #include"globalSignary.h"
 enum MIType {
-
+	MULT,
+	DIVISION,
+	ADD,
+	SUB,
+	NEG
 };
 class MiddleInstr {
 public:

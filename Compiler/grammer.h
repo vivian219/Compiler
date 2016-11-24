@@ -1,6 +1,7 @@
 #include"word.h"
 #include"lexer.h"
 #include"globalSignary.h"
+#include"MiddleCode.h"
 #pragma once
 void error();
 class Grammer {
@@ -10,6 +11,7 @@ private :
 public:
 	int funcNum = 0;
 	Grammer(string _filename);
+	MiddleCode MCode;
 	Signary *curSignary;
 	globalSignary *globSig=new globalSignary();
 	map<string, Signary> sigList;
@@ -45,4 +47,5 @@ public:
 	bool funcEnterGlob(string name, wordType wt);
 	bool queryIdent(string name);
 	bool queryFunc(string name);
+	SignaryItem* get(string name);
 };
