@@ -1,0 +1,3 @@
+﻿  lexer.cpp
+e:\vs files\compiler\compiler\lexer.cpp(221): warning C4715: “Lexer::getword”: 不是所有的控件路径都返回值
+LINK : fatal error LNK1168: 无法打开 E:\VS files\Compiler\Debug\Compiler.exe 进行写入

@@ -1,0 +1,13 @@
+int i;
+void func1()
+{
+	int a;
+}
+int func2(int j)
+{
+	scanf(_j);	
+}
+void main()
+{
+	const char ch='9';
+}

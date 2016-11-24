@@ -1,0 +1,13 @@
+﻿  signary.cpp
+  grammer.cpp
+  globalSignary.cpp
+  正在生成代码...
+  正在编译...
+  main.cpp
+  lexer.cpp
+e:\vs files\compiler\compiler\lexer.cpp(13): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\vs files\compiler\compiler\lexer.cpp(63): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  正在生成代码...
+e:\vs files\compiler\compiler\lexer.cpp(244): warning C4715: “Lexer::getword”: 不是所有的控件路径都返回值
+  Compiler.vcxproj -> E:\VS files\Compiler\x64\Debug\Compiler.exe
+  Compiler.vcxproj -> E:\VS files\Compiler\x64\Debug\Compiler.pdb (Full PDB)

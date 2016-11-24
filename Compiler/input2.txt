@@ -1,0 +1,51 @@
+const int con_num=10,PI=4;
+const char con_add='c';
+int i,_j,arr1[10];
+char ch,arr2[10];
+int add(int i,int j)
+{
+	int sum;
+	sum=i+j;
+	return (sum);
+}
+char getH(char j)
+{
+	if(j==0)
+		return('H');
+	else
+		return('h');
+}
+void printString(int s)
+{
+	;
+	printf("HelloWorld");
+}
+int fib(int i)
+{
+	if(i==1)
+		return (1);
+	if(i==2)
+		return (2);
+ 	else
+		return (fib(i-1)+fib(i-2));
+}
+void main()
+{
+	const int x=5;char ch;
+	int y;int s;char c[10];
+	y=1;
+	do 
+		y=y+1;
+	while(x!=y);
+	printString(s);
+	for(y=1;y<5;y=y+1)
+	{
+		s=add(x,y);
+		printf(s);
+		s=-s/2+s;
+		ch=getH(s);
+		c[y]=ch;
+	}
+	scanf(y);
+	printf(fib(y));
+}
