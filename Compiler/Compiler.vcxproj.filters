@@ -65,5 +65,11 @@
     <ClCompile Include="MiddleCode.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="mipsinstr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MipsCode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

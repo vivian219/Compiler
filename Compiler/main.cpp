@@ -13,7 +13,7 @@ int main() {
 //	Grammer g = Grammer(string("input2.txt"));
 	Grammer g = Grammer(string("input2.txt"));
 	g.prog();
-	
+	g.printMiddleCode();
 	cout << "Finished" << endl;
 	system("pause");
 }

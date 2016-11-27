@@ -17,8 +17,7 @@ enum wordKind {
 	functionKind,
 	arrKind,
 	paraKind,
-
-	label
+	labelKind
 	//for mips label
 };
 class SignaryItem {
@@ -38,6 +37,7 @@ public:
 		intValue = _intValue;
 		charValue = _charValue;
 	}
+	SignaryItem() {}
 };
 class Signary {
 public:
@@ -67,6 +67,7 @@ public:
 class globalSignary {
 public:
 	globalSignary() {};
+	int labelCounter=0;
 	wordKind wk;
 	wordType wt;
 	string name;
@@ -80,5 +81,6 @@ public:
 	map<string, SignaryItem*> sigGlobTable;
 	map<string, Signary*>funcList;
 	void printGlobSig();
+	SignaryItem* genLabel();
 };
 

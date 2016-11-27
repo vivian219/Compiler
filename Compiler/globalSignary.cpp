@@ -1,5 +1,6 @@
 #include"globalSignary.h"
 #include<iostream>
+#include<sstream>
 using namespace std;
 
 bool globalSignary::enterGlobSignary(string name, wordKind wk, wordType wt, int size, int intValue, char charValue)
@@ -72,4 +73,16 @@ void globalSignary::printGlobSig()
 			sig->printSig();
 			cout << endl;
 		}
+}
+SignaryItem* globalSignary::genLabel()
+{
+	stringstream ss;
+	ss << "Label" << labelCounter;
+	labelCounter++;
+	string name = ss.str();
+	SignaryItem* tmp = new SignaryItem(name, 0, wordKind::labelKind,wordType::voidTyp, 0, NULL);
+	//sigGlobList.push_back(tmp);
+	//sigGlobTable[name] = tmp;
+	labelCounter++;
+	return tmp;
 }

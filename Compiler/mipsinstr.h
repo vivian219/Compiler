@@ -55,13 +55,13 @@ private:
 
 class PreDefine {
 public:
-	string label;
+	string Label;
 	string conString;
 	PreDefine(string _label, string _const) {
-		label = _label;
+		Label = _label;
 		conString = _const;
 	}
 	string getDefine() {
-		return label + ": .ascizz " + conString;
+		return Label + ": .ascizz " + conString;
 	}
 };

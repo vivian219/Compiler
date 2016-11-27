@@ -89,5 +89,23 @@ string getMITypeName(MIType _type) {
 }
 void MiddleInstr::printMIT()
 {
-	cout << getMITypeName(type) <<"\t"<< desAddr->name << "," << srcAddr1->name << "," << srcAddr2->name << endl;
+	cout << getMITypeName(type) << "\t";
+	if (desAddr != NULL) {
+		cout << desAddr->name << ",";
+	}
+	else {
+		cout << "\t" << ",";
+	}
+	if (srcAddr1 != NULL) {
+		cout << srcAddr1->name << ",";
+	}
+	else {
+		cout << "\t" << ",";
+	}
+	if (srcAddr2 != NULL) {
+		cout << srcAddr2->name << endl;
+	}
+	else {
+		cout << endl;
+	}
 }

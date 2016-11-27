@@ -26,7 +26,7 @@ public:
 		mipsInstrs.push_back(MipsInstr(_mips_type," "+_des, ","+_src1));
 	}
 	void addInstr(MIPSType _mips_type, string _des, string _src1, string _src2) {
-		if (_mips_type == MIPSType::lw | _mips_type == MIPSType::sw) {
+		if ((_mips_type == MIPSType::lw )| (_mips_type == MIPSType::sw)) {
 			mipsInstrs.push_back(MipsInstr(_mips_type, " " + _des, "," + _src1, "(" + _src2 + ")"));
 		}
 		else {

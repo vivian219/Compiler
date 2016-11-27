@@ -37,6 +37,7 @@ enum MIType {
 
 	//for function call
 	CALL,
+	FUNCGET,
 	RET,
 	PUSH,
 

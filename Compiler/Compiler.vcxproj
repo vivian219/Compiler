@@ -162,6 +162,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MiddleCode.cpp" />
     <ClCompile Include="middleinstr.cpp" />
+    <ClCompile Include="MipsCode.cpp" />
+    <ClCompile Include="mipsinstr.cpp" />
     <ClCompile Include="signary.cpp" />
     <ClCompile Include="word.cpp" />
   </ItemGroup>
