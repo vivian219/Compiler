@@ -50,4 +50,5 @@ public:
 	bool queryFunc(string name);
 	SignaryItem* get(string name);
 	void printMiddleCode();
+
 };

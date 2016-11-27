@@ -8,7 +8,14 @@ int add(int i,int j)
 	sum=i+j;
 	return (sum);
 }
-char printString(int s)
+char getH(char j)
+{
+	if(j==0)
+		return('H');
+	else
+		return('h');
+}
+void printString(int s)
 {
 	;
 	printf("HelloWorld");
@@ -36,6 +43,7 @@ void main()
 		s=add(x,y);
 		printf(s);
 		s=-s/2+s;
+		ch=getH(s);
 		c[y]=ch;
 	}
 	scanf(y);

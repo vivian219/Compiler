@@ -61,7 +61,7 @@ void Grammer::prog()
 			if (token.word_sym == symbol::intsym)
 				wt = wordType::intTyp;
 			else
-				wt = wordType::intTyp;
+				wt = wordType::charTyp;
 			next();
 			string name = token.name;
 			if (token.word_sym != symbol::ident)
@@ -429,6 +429,7 @@ void Grammer::retFuncDef(SignaryItem* func)
 		//globSig->funcList[name] = new Signary(name);
 		//curSignary = globSig->funcList[name];
 		funcEnterGlob(name, wt);
+		func = get(name);
 		next();
 	}
 }
@@ -651,7 +652,8 @@ void Grammer::statement()
 			cout << "返回语句中缺少左括号" << endl;
 		}
 		next();
-		expresstion();
+		SignaryItem* tmp=expresstion();
+		MCode.insertMI(MIType::RET, tmp, NULL, NULL);
 		if (token.word_sym != symbol::rparen)
 		{
 			error(); cout << "627" << endl;
@@ -1106,15 +1108,19 @@ void Grammer::writeState()
 	{
 		error(); cout << "935" << endl;
 	}
+	SignaryItem* strSig = new SignaryItem("",0,wordKind::constKind,wordType::strTyp,0,0);
 	next();
 	if (token.word_sym == symbol::strConst)
 	{
 		//SignaryItem* strTmp=curSignary->genTemp(wordType::)
+		strSig->name = token.name;
+		MCode.insertMI(MIType::PRINT, strSig, NULL, NULL);
 		next();
 		if (token.word_sym == symbol::comma)
 		{
 			next();
-			expresstion();
+			SignaryItem* tmp=expresstion();
+			MCode.insertMI(MIType::PRINT, tmp, NULL, NULL);
 		}
 		if (token.word_sym != symbol::rparen)
 		{
@@ -1124,7 +1130,8 @@ void Grammer::writeState()
 	}
 	else
 	{
-		expresstion();
+		SignaryItem* tmp=expresstion();
+		MCode.insertMI(MIType::PRINT, tmp, NULL, NULL);
 		if (token.word_sym != symbol::rparen)
 		{
 			error(); cout << "957" << endl;
@@ -1144,7 +1151,8 @@ void Grammer::retState()
 		error(); cout << "967" << endl;
 	}
 	next();
-	expresstion();
+	SignaryItem* tmp=expresstion();
+	MCode.insertMI(MIType::RET, tmp, NULL, NULL);
 	if (token.word_sym != symbol::rparen)
 	{
 		error(); cout << "973" << endl;
@@ -1165,6 +1173,8 @@ SignaryItem* Grammer::expresstion()
 		next();
 	}
 	firstTmp=itemDef();
+	if (ifMinus)
+		MCode.insertMI(MIType::NEG, firstTmp, firstTmp, NULL);
 	while (token.word_sym == symbol::plus || token.word_sym == symbol::minus)
 	{
 		MIType m = (token.word_sym == symbol::minus) ? MIType::SUB : MIType::ADD;
@@ -1175,8 +1185,6 @@ SignaryItem* Grammer::expresstion()
 		MCode.insertMI(m, resultTmp, firstTmp, secondTmp);
 		firstTmp=resultTmp;
 	}
-	if (ifMinus)
-		MCode.insertMI(MIType::NEG, firstTmp, firstTmp, NULL);
 	return firstTmp;
 }
 /*
@@ -1188,7 +1196,7 @@ SignaryItem* Grammer::itemDef()
 	firstTmp=factorDef();
 	while (token.word_sym == symbol::times || token.word_sym == symbol::divison)
 	{
-		MIType t = (token.word_sym == symbol::divison) ? MIType::DIVISION : MULT;
+		MIType t = (token.word_sym == symbol::divison) ? MIType::DIVISION : MIType::MULT;
 		SignaryItem* resultTmp=curSignary->genTemp(firstTmp->wt, wordKind::varKind);
 		next();
 		SignaryItem* secondTmp=factorDef();

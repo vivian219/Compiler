@@ -18,7 +18,7 @@ string getMITypeName(MIType _type) {
 		return "MULT";
 		break;
 	case DIVISION:
-		return "MULT";
+		return "DIV";
 		break;
 	case ADD:
 		return "ADD";
@@ -72,7 +72,7 @@ string getMITypeName(MIType _type) {
 		return "PUSH";
 		break;
 	case BEIGN:
-		return "BEIGN";
+		return "BEGIN";
 		break;
 	case END:
 		return "END";
@@ -83,7 +83,11 @@ string getMITypeName(MIType _type) {
 	case SCAN:
 		return "SCAN";
 		break;
+	case FUNCGET:
+		return "FUNCGET";
+		break;
 	default:
+		return "UNDEFINE";
 		break;
 	}
 }

@@ -1,4 +1,3 @@
 ﻿  middleinstr.cpp
-e:\vs files\compiler\compiler\middleinstr.cpp(89): warning C4715: “getMITypeName”: 不是所有的控件路径都返回值
   Compiler.vcxproj -> E:\VS files\Compiler\x64\Debug\Compiler.exe
   Compiler.vcxproj -> E:\VS files\Compiler\x64\Debug\Compiler.pdb (Full PDB)

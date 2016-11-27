@@ -6,7 +6,8 @@ using namespace std;
 enum wordType {
 	intTyp,
 	charTyp,
-	voidTyp
+	voidTyp,
+	strTyp
 };
 enum wordKind {
 	constKind,
