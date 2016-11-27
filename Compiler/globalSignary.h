@@ -16,7 +16,10 @@ enum wordKind {
 	TempAddrKind,
 	functionKind,
 	arrKind,
-	paraKind
+	paraKind,
+
+	label
+	//for mips label
 };
 class SignaryItem {
 public:
