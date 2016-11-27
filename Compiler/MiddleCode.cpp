@@ -14,10 +14,13 @@ bool MiddleCode::insertMI(MIType _type, SignaryItem* _desAddr, SignaryItem* srcA
 		return false;
 	}
 }
+
+//insert a prefined string
 void MiddleCode::insertStr(string _s)
 {
 		strList.push_back(_s);
 }
+//print all middle code
 void MiddleCode::printMI()
 {
 	vector<MiddleInstr*>::iterator tmp;

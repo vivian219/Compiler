@@ -69,10 +69,6 @@ void Grammer::prog()
 				name = "ident";
 				cout << "有返回值函数定义缺少函数名" << endl;
 			}
-			/*globSig->enterGlobSignary(name,wordKind::functionKind,wt,4,0,NULL);
-			globSig->funcList[name] = new Signary(name);
-			curSignary = globSig->funcList[name];
-			cout << "curSignary="<<curSignary->name <<"name="<<globSig->funcList[name]->name<< endl;*/
 			funcEnterGlob(name, wt);
 			next();
 		}
@@ -92,24 +88,16 @@ void Grammer::prog()
 				error();
 				cout << "无返回值函数定义缺少函数名" << endl;
 			}
-			//Signary*sigTmp = new Signary();
-			/*cout << "funcName:" << name << endl;
-			globSig->funcList[name] = new Signary(name);
-			cout << "After:" << endl;
-			globSig->enterGlobSignary(name, wordKind::functionKind,wordType::voidTyp, 4, 0, NULL);
-			curSignary = globSig->funcList[name];
-			curSignary->printSig();*/
+
 			funcEnterGlob(name, wordType::voidTyp);
 			next();
 			voidFuncDef();
 		}
 	}
+	//main function begin.
 	if (token.word_sym == symbol::mainsym)
 	{
-	//	Signary*sigTmp = new Signary();
-		/*globSig->funcList["main"] = new Signary("main");
-		globSig->enterGlobSignary("main", wordKind::functionKind, wordType::voidTyp, 4, 0, NULL);
-		curSignary = globSig->funcList["main"];*/
+		//enter "main" into globalSignary.
 		funcEnterGlob("main", wordType::voidTyp);
 		next();
 		mainFunc();
@@ -291,6 +279,10 @@ void Grammer::varState(bool ifglob, string _name, wordType _wt)
 	//	cout << "this is variable statement" << endl;
 	}
 }
+/*
+＜变量说明＞  ::= ＜变量定义＞;{＜变量定义＞;}
+＜变量定义＞  ::= ＜类型标识符＞(＜标识符＞|＜标识符＞‘[’＜无符号整数＞‘]’){,(＜标识符＞|＜标识符＞‘[’＜无符号整数＞‘]’) }
+*/
 void Grammer::varDef(bool ifglob,string _name,wordType wt)
 {
 	string name=_name; int size=0;
@@ -372,6 +364,11 @@ void Grammer::varDef(bool ifglob,string _name,wordType wt)
 		}
 	}
 }
+
+/*
+＜有返回值函数定义＞  ::=  ＜声明头部＞‘(’＜参数＞‘)’ ‘{’＜复合语句＞‘}’
+＜声明头部＞   ::=  int＜标识符＞|char＜标识符＞
+*/
 void Grammer::retFuncDef()
 {
 	while (true)
@@ -429,6 +426,11 @@ void Grammer::retFuncDef()
 		next();
 	}
 }
+
+/*
+＜参数＞    ::= ＜参数表＞
+＜参数表＞  ::=  ＜类型标识符＞＜标识符＞{,＜类型标识符＞＜标识符＞}| ＜空＞
+*/
 void Grammer::paraList()
 {
 	wordType wt; string name="";
@@ -457,6 +459,9 @@ void Grammer::paraList()
 		next();
 	}
 }
+/*
+＜无返回值函数定义＞::= void＜标识符＞‘(’＜参数＞‘)’‘{’＜复合语句＞‘}’
+*/
 void Grammer::voidFuncDef()
 {
 	if (token.word_sym != symbol::lparen)
@@ -490,6 +495,10 @@ void Grammer::voidFuncDef()
 	next();
 	//cout << "this is a function without return statement" << endl;
 }
+
+/*
+＜主函数＞::= void main‘(’‘)’ ‘{’＜复合语句＞‘}’
+*/
 void Grammer::mainFunc()
 {
 	if (token.word_sym != symbol::lparen)
@@ -515,6 +524,10 @@ void Grammer::mainFunc()
 	next();
 //	cout << "this is main function" << endl;
 }
+
+/*
+＜复合语句＞   ::=  ［＜常量说明＞］［＜变量说明＞］＜语句列＞
+*/
 void Grammer::compState()
 {
 		if (token.word_sym == symbol::constsym)
@@ -548,6 +561,10 @@ void Grammer::compState()
 			stateList();
 		}
 }
+
+/*
+＜语句列＞   ::=｛＜语句＞｝
+*/
 void Grammer::stateList()
 {
 	while (true)
@@ -557,6 +574,10 @@ void Grammer::stateList()
 			break;
 	}
 }
+
+/*
+＜语句＞ ::= ＜条件语句＞｜＜循环语句＞｜‘{’＜语句列＞‘}’｜＜有返回值函数调用语句＞;  |＜无返回值函数调用语句＞;｜＜赋值语句＞;｜＜读语句＞;｜＜写语句＞;｜＜空＞;｜＜返回语句＞;
+*/
 void Grammer::statement()
 {
 	if (token.word_sym == symbol::ifsym)
@@ -634,7 +655,6 @@ void Grammer::statement()
 			error(); cout << "632" << endl;
 		}
 
-		//next();
 	}
 	else if (token.word_sym == symbol::semicolon)
 	{
@@ -680,6 +700,9 @@ void Grammer::statement()
 		}
 	}
 }
+/*
+＜条件语句＞  ::=  if ‘(’＜条件＞‘)’＜语句＞［else＜语句＞］
+*/
 void Grammer::condiState()
 {
 	if (token.word_sym != symbol::lparen)
@@ -700,6 +723,11 @@ void Grammer::condiState()
 		statement();
 	}
 }
+
+/*
+＜条件＞      ::=  ＜表达式＞＜关系运算符＞＜表达式＞｜＜表达式＞
+＜关系运算符＞ ::=  <｜<=｜>｜>=｜!=｜==
+*/
 void Grammer::condition()
 {
 	expresstion();
@@ -717,6 +745,10 @@ void Grammer::condition()
 		expresstion();
 	}
 }
+
+/*
+do＜语句＞while ‘(’＜条件＞‘)’
+*/
 void Grammer::doLoop()
 {
 	statement();
@@ -737,6 +769,10 @@ void Grammer::doLoop()
 	}
 	next();
 }
+
+/*
+for‘(’＜标识符＞＝＜表达式＞;＜条件＞;＜标识符＞＝＜标识符＞(+|-)＜步长＞‘)’＜语句＞
+*/
 void Grammer::forLoop()
 {
 	string name="";
@@ -821,6 +857,10 @@ void Grammer::forLoop()
 	}
 	next();
 }
+
+/*
+＜赋值语句> ::=＜标识符＞＝＜表达式＞|＜标识符＞‘[’＜表达式＞‘]’=＜表达式＞
+*/
 void Grammer::assignState()
 {
 	if (token.word_sym == symbol::becomes)
@@ -844,6 +884,10 @@ void Grammer::assignState()
 		}
 	}
 }
+/*
+＜有返回值函数调用语句＞ ::= ＜标识符＞‘(’＜值参数表＞‘)’
+＜无返回值函数调用语句＞ ::= ＜标识符＞‘(’＜值参数表＞‘)’
+*/
 SignaryItem* Grammer::funcCallState()
 {
 	vector<SignaryItem*> para;
@@ -851,7 +895,7 @@ SignaryItem* Grammer::funcCallState()
 	{
 		/*if (!queryFunc(token.name))
 			cout << "the function did not defined" << endl;*/
-		para=valueParaList();
+		para = valueParaList();
 		Signary* tmp = globSig->funcList[token.name];
 		//cout << name << para->size() << endl;
 		tmp->funCall(para);
@@ -873,6 +917,9 @@ SignaryItem* Grammer::funcCallState()
 		return NULL;
 	}
 }
+/*
+＜值参数表＞::= ＜表达式＞{,＜表达式＞}｜＜空＞
+*/
 vector<SignaryItem*> Grammer::valueParaList()
 {
 	vector<SignaryItem*> para = vector<SignaryItem*>();
@@ -886,6 +933,9 @@ vector<SignaryItem*> Grammer::valueParaList()
 	}
 	return para;
 }
+/*
+＜读语句＞::=  scanf ‘(’＜标识符＞{,＜标识符＞}‘)’
+*/
 void Grammer::readState()
 {
 	if (token.word_sym != symbol::lparen)
@@ -919,6 +969,10 @@ void Grammer::readState()
 	next();
 //	cout << "this is a read statement" << endl;
 }
+
+/*
+＜写语句＞::= printf‘(’＜字符串＞,＜表达式＞‘)’|printf ‘(’＜字符串＞‘)’|printf ‘(’＜表达式＞‘)’
+*/
 void Grammer::writeState()
 {
 	if (token.word_sym != symbol::lparen)
@@ -951,6 +1005,10 @@ void Grammer::writeState()
 	}
 //	cout << "this is a write statement" << endl;
 }
+
+/*
+＜返回语句＞::=  return[‘(’＜表达式＞‘)’]
+*/
 void Grammer::retState()
 {
 	if (token.word_sym != symbol::lparen)
@@ -965,6 +1023,10 @@ void Grammer::retState()
 	}
 	next();
 }
+/*
+＜表达式＞::= ［＋｜－］＜项＞{＜加法运算符＞＜项＞}
+＜加法运算符＞ ::= +｜-
+*/
 SignaryItem* Grammer::expresstion()
 {
 	SignaryItem *firstTmp;
@@ -985,6 +1047,9 @@ SignaryItem* Grammer::expresstion()
 	}
 	return firstTmp;
 }
+/*
+＜项＞::= ＜因子＞{＜乘法运算符＞＜因子＞}
+*/
 SignaryItem* Grammer::itemDef()
 {
 	SignaryItem* firstTmp;
@@ -1001,7 +1066,7 @@ SignaryItem* Grammer::itemDef()
 	return firstTmp;
 }
 /*
-	＜因子＞    ::= ＜标识符＞｜＜标识符＞‘[’＜表达式＞‘]’｜＜整数＞|＜字符＞｜＜有返回值函数调用语句＞|‘(’＜表达式＞‘)’
+＜因子＞::= ＜标识符＞｜＜标识符＞‘[’＜表达式＞‘]’｜＜整数＞|＜字符＞｜＜有返回值函数调用语句＞|‘(’＜表达式＞‘)’
 */
 SignaryItem* Grammer::factorDef()
 {
@@ -1088,6 +1153,8 @@ void Grammer::printSignary()
 	cout << "print global signary" << endl;
 	globSig->printGlobSig();
 }
+
+//Enter function into globalSignary.
 bool Grammer::funcEnterGlob(string name,wordType wt)
 {
 	funcNum++;
@@ -1114,6 +1181,8 @@ bool Grammer::queryIdent(string name)
 	}
 	return true;
 }
+
+// Check whether the function name exists.
 bool Grammer::queryFunc(string name)
 {
 	map<string, Signary*>::iterator tmp= globSig->funcList.find(name);
@@ -1134,6 +1203,8 @@ bool Grammer::queryFunc(string name)
 	}
 	return true;
 }
+
+//Get the name's SignaryItem from Sinary, or globalSignary.
 SignaryItem* Grammer::get(string name)
 {
 
@@ -1146,4 +1217,9 @@ SignaryItem* Grammer::get(string name)
 	}
 	else
 		return (curSignary->querySignary(name));
+}
+
+//Translate middle code into mips code.
+void Grammer::translate() {
+
 }

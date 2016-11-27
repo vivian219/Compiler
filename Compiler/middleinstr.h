@@ -45,8 +45,8 @@ enum MIType {
 	END,
 
 	//for system call
-	WRITE,
-	READ
+	PRINT,
+	SCAN
 };
 class MiddleInstr {
 public:

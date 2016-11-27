@@ -16,6 +16,7 @@ public:
 	globalSignary *globSig=new globalSignary();
 	map<string, Signary> sigList;
 	void next();
+	void translate();
 	void prog();//程序处理函数
 	void constState(bool ifglob);//常量说明
 	//void integerDef();//整数定义

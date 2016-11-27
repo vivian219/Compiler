@@ -80,6 +80,8 @@ bool Signary::enterParaList(wordType wt, string name)
 		return false;
 	}
 }
+
+
 bool Signary::funCall(vector<SignaryItem*> _paraList)
 {
 	if (_paraList.size() != paraList->size())
@@ -114,4 +116,9 @@ SignaryItem* Signary::genTemp(wordType wt, wordKind wk)
 	sigTable[name] = tmp;
 	tempCount++;
 	return tmp;
+}
+
+//get all varaiable's offset for mipscode.
+void Signary::getOffset() {
+
 }

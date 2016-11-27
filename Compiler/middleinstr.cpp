@@ -1,5 +1,9 @@
 #include"middleinstr.h"
 #include<iostream>
+#include<string>
+
+using namespace std;
+
 MiddleInstr::MiddleInstr(MIType _type, SignaryItem* _desAddr, SignaryItem* _srcAddr1, SignaryItem* _srcAddr2)
 {
 	type = _type;
@@ -7,7 +11,83 @@ MiddleInstr::MiddleInstr(MIType _type, SignaryItem* _desAddr, SignaryItem* _srcA
 	srcAddr1 = _srcAddr1;
 	srcAddr2 = _srcAddr2;
 }
+string getMITypeName(MIType _type) {
+	switch (_type)
+	{
+	case MULT:
+		return "MULT";
+		break;
+	case DIVISION:
+		return "MULT";
+		break;
+	case ADD:
+		return "ADD";
+		break;
+	case SUB:
+		return "SUB";
+		break;
+	case NEG:
+		return "NEG";
+		break;
+	case ASSIGN:
+		return "ASSIGN";
+		break;
+	case ARRASS:
+		return "ARRASS";
+		break;
+	case ARRGET:
+		return "ARRGET";
+		break;
+	case BLE:
+		return "BLE";
+		break;
+	case BLS:
+		return "BLS";
+		break;
+	case BGE:
+		return "BGE";
+		break;
+	case BGR:
+		return "BGR";
+		break;
+	case BEQ:
+		return "BEQ";
+		break;
+	case BNE:
+		return "BNE";
+		break;
+	case SETL:
+		return "SETL";
+		break;
+	case JUMP:
+		return "JUMP";
+		break;
+	case CALL:
+		return "CALL";
+		break;
+	case RET:
+		return "RET";
+		break;
+	case PUSH:
+		return "PUSH";
+		break;
+	case BEIGN:
+		return "BEIGN";
+		break;
+	case END:
+		return "END";
+		break;
+	case PRINT:
+		return "PRINT";
+		break;
+	case SCAN:
+		return "SCAN";
+		break;
+	default:
+		break;
+	}
+}
 void MiddleInstr::printMIT()
 {
-	cout << type <<" "<< desAddr->name << " " << srcAddr1->name << " " << srcAddr2->name << endl;
+	cout << getMITypeName(type) <<"\t"<< desAddr->name << "," << srcAddr1->name << "," << srcAddr2->name << endl;
 }

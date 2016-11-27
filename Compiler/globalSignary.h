@@ -61,6 +61,8 @@ public:
 	void printSig();
 	bool funCall(vector<SignaryItem*> _paraList);
 	SignaryItem* genTemp(wordType wt,wordKind wk);
+
+	void getOffset();
 };
 class globalSignary {
 public:

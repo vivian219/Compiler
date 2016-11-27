@@ -151,6 +151,8 @@
     <ClInclude Include="lexer.h" />
     <ClInclude Include="MiddleCode.h" />
     <ClInclude Include="middleinstr.h" />
+    <ClInclude Include="MipsCode.h" />
+    <ClInclude Include="mipsinstr.h" />
     <ClInclude Include="word.h" />
   </ItemGroup>
   <ItemGroup>
