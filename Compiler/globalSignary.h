@@ -29,6 +29,8 @@ public:
 	wordType wt;
 	int intValue;
 	char charValue;
+	
+	int offset;
 	SignaryItem(string _name, int _size, wordKind _wk, wordType _wt, int _intValue, char _charValue)
 	{
 		name = _name;

@@ -21,10 +21,10 @@ enum MIPSType {
 	mult,
 	slash,
 
-	bgez,
-	blez,
-	bgtz,
-	bltz,
+	bge,
+	ble,
+	bgt,
+	blt,
 	beq,
 	bne,
 

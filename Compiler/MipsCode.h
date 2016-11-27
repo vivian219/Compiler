@@ -65,4 +65,7 @@ public:
 	
 	void PrintToMips(MiddleInstr* middle);
 	void ScanToMips(MiddleInstr* middle);
+
+	void RegToVar(string _$i,SignaryItem* var);
+	void VarToReg(string _$i, SignaryItem* var);
 };
